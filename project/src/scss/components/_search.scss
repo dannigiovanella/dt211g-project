@@ -1,11 +1,19 @@
 #searchinput {
     flex: 1;
+    background-color: rgba(227, 228, 220, 0.8);
     box-sizing: border-box;
+    font-size: 1.2rem;
+    padding-left: 0.8rem;
+    margin-right: 0.2rem;
+    border-radius: 10px;
 
 }
 
 #searchbtn {
-    padding: 1rem;
+    padding: 0.4rem;
+    width: 15%;
+    background-color: rgb(69, 89, 53) ;
+    border-radius: 10px;
 }
 
 .searchwrap {
@@ -13,4 +21,9 @@
     width: 70%;
     padding-top: 1rem;
     padding-bottom: 3rem;
+}
+
+.searchsection{
+    border-bottom: 2px solid rgba(227, 228, 220, 0.8);
+    
 }
