@@ -1,0 +1,27 @@
+* {
+  outline: 1px solid red; /* 1px röd kant runt varje element */
+}
+
+body{
+    max-width: 1800px;
+}
+
+main{
+    width: 100%;
+    height: 100vh;
+}
+
+.pagewrapper {
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
+padding-top: 5rem;
+
+h1{
+    text-align: center;
+}
+
+.searchwrap {
+    margin: 0 auto;
+}
+}

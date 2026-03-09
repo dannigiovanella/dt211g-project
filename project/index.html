@@ -10,7 +10,45 @@
 </head>
 
 <body>
+  <!--Navigeringsmeny med logotyp-->
+  <header>
+    <img src="" alt="">
+    <a href="about.html">About</a>
+  </header>
 
+  <main>
+  <div class="pagewrapper">
+    <section>
+      <!--HUvudrubrik-->
+      <h1>Search the world of Far Cry</h1>
+      <!--Sökfunktion-->
+      <div class="searchwrap">
+      <input type="text" id="searchinput" placeholder="Search Far Cry games...">
+
+      <button id="searchbtn">Search</button>
+      </div>
+    </section>
+
+    <section>
+      <!--Top 3 rankade Far cry spelen-->
+      <h2>Top Far Cry games</h2>
+      <!--Hämtar data från Rawg-->
+      <div id="topgames"></div>
+    </section>
+
+    <section>
+      <!--Container för sökresultat. Data hämtas från Rawg-->
+      <h2>Search results</h2>
+      <div id="searchresults"></div>
+    </section>
+
+    <!--Container för summering av spel. Data hämtas från wiki-->
+    <section id="gamesummary"></section>
+  </div>
+  </main>
+  <footer>
+
+  </footer>
   <script type="module" src="/src/js/main.js"></script>
 </body>
 
