@@ -12,3 +12,5 @@
 //.6 Filtera de 3 bäst rankade spelen
 
 //7. Skriv ut topspelen i dom med spelinfo och knapp till summering (Toppspel ska ligga på startsida vid laddning)
+
+// Om tid finns. hitta api att addera mer info/lore till spelen

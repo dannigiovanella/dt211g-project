@@ -16,11 +16,15 @@ export default defineConfig({
   plugins: [
     ViteImageOptimizer({
 
-      webp:{
-        quality: 80
+      webp: {
+        quality: 70
+      },
+
+      png: {
+        quality: 70
       }
 
     })
   ]
 
-  });
+});
