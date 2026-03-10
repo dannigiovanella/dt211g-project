@@ -19,34 +19,40 @@
 <body>
   <!--Navigeringsmeny med logotyp-->
   <header>
-    <img src="" alt="">
-    <a href="about.html">About</a>
+    <!--Logotyp och headline-->
+    <div class="sitelogo">
+      <a href="index.html">
+        <h1>FRONTIER ATLAS</h1>
+      </a>
+      <p>A Far Cry series explorer</p>
+    </div>
+    <a href="about.html" class="about">About</a>
   </header>
 
   <main>
     <div class="pagewrapper">
       <section class="searchsection">
         <!--HUvudrubrik-->
-        <h1>Search the world of Far Cry</h1>
-        <!--Sökfunktion-->
-        <div class="searchwrap">
-          <input type="text" id="searchinput" placeholder="Search Far Cry games...">
+        <h2>Search the world of Far Cry</h1>
+          <!--Sökfunktion-->
+          <div class="searchwrap">
+            <input type="text" id="searchinput" placeholder="Search Far Cry games...">
 
-          <button id="searchbtn"><img src="./public/images/searchicon.png" alt=""></button>
-        </div>
+            <button id="searchbtn"><img src="./images/searchicon.png" alt=""></button>
+          </div>
       </section>
 
       <section>
         <!--Top 3 rankade Far cry spelen-->
-        <h2>Top Far Cry games</h2>
-        <!--Hämtar data från Rawg-->
-        <div id="topgames"></div>
+        <h3>Top Far Cry games</h2>
+          <!--Hämtar data från Rawg-->
+          <div id="topgames"></div>
       </section>
 
       <section>
         <!--Container för sökresultat. Data hämtas från Rawg-->
-        <h2>Search results</h2>
-        <div id="searchresults"></div>
+        <h3>Search results</h2>
+          <div id="searchresults"></div>
       </section>
 
       <!--Container för summering av spel. Data hämtas från wiki-->

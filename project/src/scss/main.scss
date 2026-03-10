@@ -5,8 +5,14 @@
 /*Bakgrundsbild*/
 @use "components/background";
 
+/*Knappar*/
+@use "components/buttons";
+
 /*Sökfält*/
 @use "components/search";
+
+/*Navigation (header)*/
+@use "layout/navigation";
 
 /*Sidolayout*/
 @use "layout/pagelayout"; 
