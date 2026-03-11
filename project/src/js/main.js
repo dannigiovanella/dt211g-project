@@ -7,16 +7,22 @@ const rawgKey = import.meta.env.VITE_RAWGAPIKEY;
 //Wiki API
 
 
-
 //Hämta data om spel från Rawg vid sökning av Far Cry
 async function getGames(search = "Far Cry") {
     try {
-        const url = `${rawgApi}?key=${rawgKey}&search=${(search)}`;
+        const url = `${rawgApi}?key=${rawgKey}&search=${encodeURIComponent(search)}&page_size=20`;
         const response = await fetch(url);
         const rawgData = await response.json();
 
+        // Filtrerar resultaten så att bara far cry spel kommer upp vid sökning
+        //Exluderar special editions
+        const filteredGames = rawgData.results.filter(game =>
+            game.name.toLowerCase().startsWith("far cry") &&
+            !game.name.toLowerCase().includes("edition" && "bundle") 
+        );
+
         //Skickar data till funkton som skapar spelkort
-        showGames(rawgData.results);
+        showGames(filteredGames);
 
         //Vid fel av hämting av data
     } catch (error) {
@@ -87,7 +93,7 @@ async function getInfo(game) {
         const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${wikiTitle}`;
         const response = await fetch(url);
         const wikiData = await response.json();
-        
+
         //Hämtar id till div för spelsummering
         const infoDiv = document.querySelector("#gamesummary");
 
