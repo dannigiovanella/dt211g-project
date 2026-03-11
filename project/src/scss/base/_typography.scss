@@ -1,7 +1,9 @@
+@use "../abstracts/variables";
+
 body {
   font-family: "Inter", sans-serif;
   line-height: 1.5;
-  color: rgb(227, 228, 220);
+  color: variables.$color-dark-text;
 }
 
 h1 {
@@ -35,10 +37,10 @@ h3{
 }
 
 a {
-  color: rgb(227, 228, 220);
+  color: variables.$color-dark-text;
   text-decoration: none;
 }
 
 a:hover{
-  color: #853a21;
+  color: variables.$color-accent;
 }

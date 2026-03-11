@@ -1,6 +1,7 @@
 /*
   outline: 1px solid red; 
 */
+@use "../abstracts/variables";
 
 html, body {
   height: 100%;
@@ -9,7 +10,7 @@ html, body {
 }
 
 html{
-    background-color: rgb(12, 11, 11);
+    background-color: variables.$color-mainbg;
 }
 
 body{
@@ -20,7 +21,6 @@ body{
 main{
     width: 100%;
     min-height: 100vh;
-    background-attachment: fixed;
 }
 
 .pagewrapper {

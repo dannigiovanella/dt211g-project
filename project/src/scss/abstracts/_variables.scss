@@ -1,0 +1,24 @@
+/*Variblar för färger på webbplats*/
+
+@use "sass:color";
+
+/*Bakgrunder*/
+$color-mainbg: rgb(12, 11, 11);
+
+/*Ljus text på mörk bakgrund.*/
+$color-dark-text: rgb(227, 228, 220);
+
+/*Mörk text på ljus bakgrund*/
+$color-light-text: rgb(12, 11, 11);
+
+/*Bakgrund för text i light-mode*/
+$color-light-textbg: rgba(227, 228, 220, 0.8);
+
+/*Bakgrund för text i dark-mode*/
+$color-dark-textbg: rgba(12, 11, 11, 0.8);
+
+/*Knappfärg*/
+$color-button: rgb(69, 89, 53) ;
+
+/*Accentfärg. Hover, detaljer osv*/
+$color-accent: rgb(133, 58, 33);
