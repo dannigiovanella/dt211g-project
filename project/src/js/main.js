@@ -65,8 +65,7 @@ function showGames(games) {
     });
 }
 
-//Anropa funktion för att hämta spel
-getGames();
+
 
 
 //1. Hämta data om spel från Rawg

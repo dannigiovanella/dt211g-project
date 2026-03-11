@@ -1,15 +1,20 @@
+#searchresults {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
 
-
-#searchresults{
-    width: 90%;
 }
 
-.gamecard{
- width: 50%; 
- background-color: black;
- 
- img{
-    width: 100%;
- }
-}
+.gamecard {
+    width: 20%;
+    background-color: black;
+    padding: 1rem;
+    margin-bottom: 1rem;
 
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
