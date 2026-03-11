@@ -26,7 +26,18 @@ async function getGames(search = "Far Cry") {
 getGames();
 
 
-//Sökfunktion
+//Sökfunktion - Eventlyssnare för sökfältet
+//Hämtar ID för knapp och sökfält
+const searchBtn = document.querySelector("#searchbtn");
+const searchInput = document.querySelector("#searchinput");
+
+searchBtn.addEventListener("click", () => {
+  const searchValue = searchInput.value.trim();
+  //Kör funktionen för att hämta data med vädret från input vid klick av knapp
+  if (searchValue) {
+    getGames(searchValue);
+  }
+});
 
 
 
