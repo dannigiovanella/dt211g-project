@@ -22,6 +22,10 @@ export default defineConfig({
 
       png: {
         quality: 70
+      },
+
+      svg: {
+        quality: 75
       }
 
     })
