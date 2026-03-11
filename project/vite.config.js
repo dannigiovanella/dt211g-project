@@ -24,6 +24,10 @@ export default defineConfig({
         quality: 70
       },
 
+      jpg: {
+        quality: 65
+      },
+
       svg: {
         quality: 75
       }

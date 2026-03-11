@@ -15,8 +15,6 @@ async function getGames(search = "Far Cry") {
         const response = await fetch(url);
         const rawgData = await response.json();
 
-        //Visar arrayen i konsol om det funkar
-        console.log(rawgData.results);
         //Skickar data till funkton som skapar spelkort
         showGames(rawgData.results);
 
@@ -62,10 +60,53 @@ function showGames(games) {
         //Lägger till div för spelkort i "searchresults"
         gameDiv.appendChild(gameCard);
 
+        //Evenlyssnare för knapp till mer info. (Summering av spel från wiki)
+        const infoBtn = gameCard.querySelectorAll(".showinfo");
+
+        infoBtn.forEach(infoButton => {
+            infoButton.addEventListener("click", () => {
+                //Tömmer sökningarna
+                gameDiv.innerHTML = "";
+                //Hämtar data utifrån titel
+                const gameTitle = infoButton.dataset.title;
+
+                // Anropa funktion som hämtar info från wiki
+                getInfo(game);
+
+            });
+        });
     });
 }
 
+//Funktion hämtar data från wikipedia. Summering av spel.
+async function getInfo(game) {
+    try {
+        // Justering av mellanslag då Wiki använder underscore istället för mellanslag. 
+        const wikiTitle = game.name.replaceAll(" ", "_");
+        //Hämtar summering utifrån sidtitel
+        const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${wikiTitle}`;
+        const response = await fetch(url);
+        const wikiData = await response.json();
+        
+        //Hämtar id till div för spelsummering
+        const infoDiv = document.querySelector("#gamesummary");
 
+        // Skapar div inuti gamesummary som visar både info från rawg och wiki. skapar class till css
+        infoDiv.innerHTML = `
+      <div class="infocard">
+        <img src="${game.background_image}" alt="${game.name}">
+        <h3>${game.name}</h3>
+        <p><strong>Released:</strong> ${game.released}</p>
+        <p><strong>Rating:</strong> ${game.rating}</p>
+        <hr>
+        <p>${wikiData.extract || "No info found"}</p>
+      </div>
+    `;
+
+    } catch (error) {
+        console.error("Fel vid hämtning av info", error);
+    }
+}
 
 
 //1. Hämta data om spel från Rawg
