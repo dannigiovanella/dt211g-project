@@ -43,6 +43,13 @@ searchBtn.addEventListener("click", () => {
     const searchValue = searchInput.value.trim();
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     if (searchValue) {
+
+        // Döljer topspel när man söker
+        document.querySelector("#topgames").style.display = "none";
+
+        // Visar sökresultaten
+        document.querySelector("#searchresults").style.display = "block";
+
         getGames(searchValue);
     }
 });
@@ -74,8 +81,11 @@ function showGames(games) {
 
         infoBtn.forEach(infoButton => {
             infoButton.addEventListener("click", () => {
-                //Tömmer sökningarna
-                gameDiv.innerHTML = "";
+                //Döljer topspel och sökresultat
+                document.querySelector("#topgames").style.display = "none";
+                document.querySelector("#searchresults").style.display = "none";
+
+
                 //Hämtar data utifrån titel
                 const gameTitle = infoButton.dataset.title;
 
@@ -88,7 +98,7 @@ function showGames(games) {
 }
 
 //Funktion hämtar data från wikipedia. Summering av spel.
-async function getInfo(game) {
+async function getInfo(game, from = "search") {
     try {
         // Justering av mellanslag då Wiki använder underscore istället för mellanslag. 
         const wikiTitle = game.name.replaceAll(" ", "_");
@@ -99,18 +109,39 @@ async function getInfo(game) {
 
         //Hämtar id till div för spelsummering
         const infoDiv = document.querySelector("#gamesummary");
+        //Tömmer tidigare innehåll
+        infoDiv.innerHTML = "";
 
         // Skapar div inuti gamesummary som visar både info från rawg och wiki. skapar class till css
-        infoDiv.innerHTML = `
-      <div class="infocard">
+        const infocard = document.createElement("div");
+        infocard.classList.add("infocard");
+
+        //Skapar en tillbakaknapp i show info med class för css
+            const backBtn = document.createElement("button");
+            backBtn.classList.add("backbtn");
+            backBtn.textContent = "Back";
+            //eventlyssnare som gör att sökresultat visas vid klick av back
+            backBtn.addEventListener("click", () => {
+                infoDiv.innerHTML = ""; 
+                document.querySelector("#searchresults").style.display = "block";
+            });
+            //Knapp läggs till i div
+            infocard.appendChild(backBtn);
+        
+        const infoContent = document.createElement("div");
+        infoContent.innerHTML = `
+        <div class="infocard">
         <img src="${game.background_image}" alt="${game.name}">
         <h3>${game.name}</h3>
         <p><strong>Released:</strong> ${game.released}</p>
         <p><strong>Rating:</strong> ${game.rating}</p>
         <hr>
         <p>${wikiData.extract || "No info found"}</p>
-      </div>
+        </div>
     `;
+        //Infocontetn läggs i div för infokortet. infokortet läggs i div för hela info
+        infocard.appendChild(infoContent);
+        infoDiv.appendChild(infocard);
 
     } catch (error) {
         console.error("Fel vid hämtning av info", error);
@@ -170,6 +201,9 @@ function showTopGames(games) {
         const infoBtn = gameCard.querySelector(".showinfo");
         //Eventlissnare på knapp som hämtar samma info i funktion getInfo
         infoBtn.addEventListener("click", () => {
+            //Döljer och sökresultat
+            document.querySelector("#searchresults").style.display = "none";
+
             getInfo(game);
         });
 
