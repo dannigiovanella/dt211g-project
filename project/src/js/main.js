@@ -43,6 +43,10 @@ searchBtn.addEventListener("click", () => {
     const searchValue = searchInput.value.trim();
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     if (searchValue) {
+
+        // göm toppspel om det görs en sökning
+        document.querySelector("#topgames").style.display = "none";
+
         getGames(searchValue);
     }
 });
@@ -78,6 +82,9 @@ function showGames(games) {
                 gameDiv.innerHTML = "";
                 //Hämtar data utifrån titel
                 const gameTitle = infoButton.dataset.title;
+
+                // göm sökresultat när man går inte på ett spel
+                document.querySelector("#searchresults").style.display = "none";
 
                 // Anropa funktion som hämtar info från wiki
                 getInfo(game);
@@ -170,6 +177,10 @@ function showTopGames(games) {
         const infoBtn = gameCard.querySelector(".showinfo");
         //Eventlissnare på knapp som hämtar samma info i funktion getInfo
         infoBtn.addEventListener("click", () => {
+
+            // göm toppspel när man klickar in på spelet
+            document.querySelector("#topgames").style.display = "none";
+
             getInfo(game);
         });
 
@@ -182,7 +193,6 @@ function showTopGames(games) {
 //Anropa funktion för att visa toppspelen vid laddning av sida
 getTopGames();
 
-//7. Skriv ut topspelen i dom med spelinfo och knapp till summering (Toppspel ska ligga på startsida vid laddning)
 
 //8. Dokumetera funktionerna
 
