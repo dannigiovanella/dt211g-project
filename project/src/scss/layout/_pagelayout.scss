@@ -33,6 +33,12 @@ h1{
     text-align: center;
 }
 
+/*Rubriker till topspel och sökresultat*/
+#toptitle,
+#searchtitle {
+    display: none;
+}
+
 .searchwrap {
     margin: 0 auto;
 }

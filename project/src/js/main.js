@@ -8,7 +8,7 @@ const rawgKey = import.meta.env.VITE_RAWGAPIKEY;
 
 
 //Hämta data om spel från Rawg vid sökning av Far Cry
-async function getGames(search = "Far Cry") {
+async function getGames(search) {
     try {
         const url = `${rawgApi}?key=${rawgKey}&search=${encodeURIComponent(search)}&page_size=20`;
         const response = await fetch(url);
@@ -16,16 +16,16 @@ async function getGames(search = "Far Cry") {
 
         // Filtrerar resultaten så att bara far cry spel kommer upp vid sökning
         //Exluderar special editions
-        const filteredGames = rawgData.results.filter(game =>
-            !game.name.toLowerCase().includes("edition") &&
-            !game.name.toLowerCase().includes("collection") &&
-            !game.name.toLowerCase().includes("bundle")
-        );
-        //Sorterar spel så att högst rankade kommer fört
-        const sortedGames = filteredGames.sort((a, b) => b.rating - a.rating);
+        const filteredGames = rawgData.results.filter(game => {
+            const name = game.name.toLowerCase();
+            return name.startsWith("far cry") &&
+                !name.includes("edition") &&
+                !name.includes("collection") &&
+                !name.includes("bundle");
+        });
 
         //Skickar data till funkton som skapar spelkort
-        showGames(sortedGames);
+        showGames(filteredGames);
 
         //Vid fel av hämting av data
     } catch (error) {
@@ -34,28 +34,40 @@ async function getGames(search = "Far Cry") {
 }
 
 
-//Sökfunktion - Eventlyssnare för sökfältet
+
 //Hämtar ID för knapp och sökfält
 const searchBtn = document.querySelector("#searchbtn");
 const searchInput = document.querySelector("#searchinput");
-
+//Hämtar id till div för felmeddelande
+const messageDiv = document.querySelector("#searchmessage");
+//Sökfunktion - Eventlyssnare för sökfältet
 searchBtn.addEventListener("click", () => {
-    const searchValue = searchInput.value.trim();
+    const searchValue = searchInput.value.trim().toLowerCase();
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
-    if (searchValue) {
-
-        // göm toppspel om det görs en sökning
-        document.querySelector("#topgames").style.display = "none";
-
-
-        // Döljer topspel när man söker
-        document.querySelector("#topgames").style.display = "none";
-
-        // Visar sökresultaten
-        document.querySelector("#searchresults").style.display = "block";
-
-        getGames(searchValue);
+    //Värdet i input måste innehålla antingen far eller cry annar visas felmeddelande
+    if (!searchValue.toLowerCase().includes("far") && !searchValue.toLowerCase().includes("cry")) {
+        messageDiv.textContent = "Skriv minst 'far' eller 'cry' för att söka";
+        return;
     }
+
+    // Om input är rätt, töm meddelandet
+    messageDiv.textContent = "";
+
+    //Tömmer show info vid sökning
+    document.querySelector("#gamesummary").innerHTML = "";
+
+    // göm toppspel om det görs en sökning
+    document.querySelector("#topgames").style.display = "none";
+
+
+    // Döljer topspel när man söker
+    document.querySelector("#topgames").style.display = "none";
+
+    // Visar sökresultaten
+    document.querySelector("#searchresults").style.display = "flex";
+
+    getGames(searchValue);
+
 });
 
 //Funktion skapar kort som visar varje spel (skapar klass för css)
@@ -64,6 +76,11 @@ searchBtn.addEventListener("click", () => {
 function showGames(games) {
     //Hämtar id för div till att visa spel
     const gameDiv = document.querySelector("#searchresults");
+    //Visar rubrik för sökresultat
+    document.querySelector("#searchtitle").style.display = "block";
+    //Döljer rubrik för top spel
+    document.querySelector("#toptitle").style.display = "none";
+
     //Tömmer listan med sökningar
     gameDiv.innerHTML = "";
     //Skapar ett kort (div) med spelinfo och css-klass och knapp
@@ -97,7 +114,7 @@ function showGames(games) {
                 document.querySelector("#searchresults").style.display = "none";
 
                 // Anropa funktion som hämtar info från wiki
-                getInfo(game);
+                getInfo(game, "search");
 
             });
         });
@@ -124,17 +141,24 @@ async function getInfo(game, from = "search") {
         infocard.classList.add("infocard");
 
         //Skapar en tillbakaknapp i show info med class för css
-            const backBtn = document.createElement("button");
-            backBtn.classList.add("backbtn");
-            backBtn.textContent = "Back";
-            //eventlyssnare som gör att sökresultat visas vid klick av back
-            backBtn.addEventListener("click", () => {
-                infoDiv.innerHTML = ""; 
-                document.querySelector("#searchresults").style.display = "block";
-            });
-            //Knapp läggs till i div
-            infocard.appendChild(backBtn);
-        
+
+        const backBtn = document.createElement("button");
+        backBtn.classList.add("backbtn");
+        backBtn.textContent = "Back";
+        //eventlyssnare som gör att sökresultat visas vid klick av back
+        backBtn.addEventListener("click", () => {
+            infoDiv.innerHTML = "";
+            if (from === "search") {
+                // Visa sökresultaten
+                document.querySelector("#searchresults").style.display = "flex";
+            } else if (from === "top") {
+                // Visa toppspelen igen
+                document.querySelector("#topgames").style.display = "flex";
+            }
+        });
+        //Knapp läggs till i div
+        infocard.appendChild(backBtn);
+
         const infoContent = document.createElement("div");
         infoContent.innerHTML = `
         <div class="infocard">
@@ -149,6 +173,8 @@ async function getInfo(game, from = "search") {
         //Infocontetn läggs i div för infokortet. infokortet läggs i div för hela info
         infocard.appendChild(infoContent);
         infoDiv.appendChild(infocard);
+
+
 
     } catch (error) {
         console.error("Fel vid hämtning av info", error);
@@ -166,6 +192,8 @@ async function getTopGames(search = "Far Cry") {
         // Filtrerar resultaten så att bara far cry spel kommer upp
         //Exluderar special editions och blood dragon(pga avvikande formaterad bild) 
         const filteredGames = rawgData.results.filter(game =>
+            game.name.toLowerCase().includes("far cry") &&
+
             !game.name.toLowerCase().includes("edition") &&
             !game.name.toLowerCase().includes("collection") &&
             !game.name.toLowerCase().includes("bundle") &&
@@ -191,6 +219,8 @@ function showTopGames(games) {
     //Hämtar id för div till topspelen
     const topDiv = document.querySelector("#topgames");
 
+    // Visa rubrik för top spel
+    document.querySelector("#toptitle").style.display = "block";
 
     games.forEach(game => {
         //Skpar en div för spelkort
@@ -214,8 +244,10 @@ function showTopGames(games) {
 
             //Döljer och sökresultat
             document.querySelector("#searchresults").style.display = "none";
+            //Döljer rubrik för sökreultat
+            document.querySelector("#searchtitle").style.display = "none";
 
-            getInfo(game);
+            getInfo(game, "top");
         });
 
         //LÄgger till spelkort med info i topgames (topDiv)
