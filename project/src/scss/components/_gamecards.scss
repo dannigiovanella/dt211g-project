@@ -9,22 +9,29 @@
 
 }
 
-#topgames{
+#topgames {
     display: flex;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
 }
 
 /*Game card för topspelen*/
-.topgamecard{
-    width: 20%;
+.topgamecard {
+    width: 100%;
+    max-width: 300px;
     background-color: variables.$color-dark-textbg;
     padding: 1rem;
     margin-bottom: 1rem;
+    border-radius: 10px;
 
     img {
         width: 100%;
-        height: auto;
-        max-height: 130px;
+        height: 12rem;
+        object-fit: cover;
+        border-radius: 3px;
     }
+
 }
 
 /*Game card. i sökresultat*/
@@ -43,14 +50,14 @@
 
 /*Info card. utökad info när man går inte på ett spel*/
 
-#gamesummary{
+#gamesummary {
     width: 90%;
 }
 
-.infocard{
+.infocard {
     width: 50%;
 
-    img{
+    img {
         width: 100%;
     }
 }

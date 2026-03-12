@@ -46,7 +46,7 @@ searchBtn.addEventListener("click", () => {
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     //Värdet i input måste innehålla antingen far eller cry annar visas felmeddelande
     if (!searchValue.toLowerCase().includes("far") && !searchValue.toLowerCase().includes("cry")) {
-        messageDiv.textContent = "Skriv minst 'far' eller 'cry' för att söka";
+        messageDiv.textContent = "Needs at least 'far' or 'cry'";
         return;
     }
 
@@ -144,7 +144,9 @@ async function getInfo(game, from = "search") {
 
         const backBtn = document.createElement("button");
         backBtn.classList.add("backbtn");
-        backBtn.textContent = "Back";
+        backBtn.innerHTML = `<img src="./images/backicon.png" alt="Back">`;
+
+
         //eventlyssnare som gör att sökresultat visas vid klick av back
         backBtn.addEventListener("click", () => {
             infoDiv.innerHTML = "";
@@ -230,7 +232,6 @@ function showTopGames(games) {
         gameCard.innerHTML = `
             <img src="${game.background_image}" alt="${game.name}">
             <h3>${game.name}</h3>
-            <p>Released: ${game.released}</p>
             <p>Rating: ${game.rating}</p>
             <button class="showinfo">Show info</button>
         `;

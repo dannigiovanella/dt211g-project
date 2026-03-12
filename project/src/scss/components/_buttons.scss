@@ -1,11 +1,51 @@
 @use "../abstracts/variables";
 
+
+/*Knappar*/
+
+@mixin buttonstyle($bgcolor, $textcolor, $shadowcolor) {
+    background-color: $bgcolor;
+    color: $textcolor;
+    box-shadow: 1px 1.5px 0.5px $shadowcolor;
+}
+
+
 /*Sökknapp*/
 #searchbtn {
     padding: 0.3rem;
     width: 15%;
-    background-color: variables.$color-button;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    box-shadow: 1px 1.5px 0.5px black;
+
+    @include buttonstyle(variables.$color-button, variables.$color-dark-text, black);
+}
+
+/*Info-knapp*/
+.showinfo {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    @include buttonstyle(variables.$color-button, variables.$color-dark-text, black);
+}
+
+/*Tillbakaknapp*/
+.backbtn{
+    width: 8%;
+    height: 2rem;
+    padding: 0.2rem;
+    padding-left: 0.4rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include buttonstyle(variables.$color-button, variables.$color-dark-text, black); 
+}
+
+.backbtn img{
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
 }
