@@ -9,6 +9,20 @@
 
 }
 
+/*Game card för topspelen*/
+.topgamecard{
+    width: 20%;
+    background-color: variables.$color-dark-textbg;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    img {
+        width: 100%;
+        height: auto;
+        max-height: 130px;
+    }
+}
+
 /*Game card. i sökresultat*/
 .gamecard {
     width: 20%;

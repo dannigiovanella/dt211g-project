@@ -126,11 +126,12 @@ async function getTopGames(search = "Far Cry") {
         const rawgData = await response.json();
 
         // Filtrerar resultaten så att bara far cry spel kommer upp
-        //Exluderar special editions
+        //Exluderar special editions och blood dragon(pga avvikande formaterad bild) 
         const filteredGames = rawgData.results.filter(game =>
             !game.name.toLowerCase().includes("edition") &&
             !game.name.toLowerCase().includes("collection") &&
-            !game.name.toLowerCase().includes("bundle")
+            !game.name.toLowerCase().includes("bundle") &&
+            !game.name.toLowerCase().includes("dragon")
         );
         //Sorterar spel så att högst rankade kommer fört
         const sortedGames = filteredGames.sort((a, b) => b.rating - a.rating);
@@ -138,6 +139,8 @@ async function getTopGames(search = "Far Cry") {
         // Plockar ut dom tre bäst rankade
         const topGames = sortedGames.slice(0, 3);
 
+        //Anropar funktion för att visa top 3 spel
+        showTopGames(topGames);
 
         //Vid fel av hämting av data
     } catch (error) {
@@ -146,18 +149,38 @@ async function getTopGames(search = "Far Cry") {
 }
 
 //Funktion som visar topp 3 spelen
+function showTopGames(games) {
+    //Hämtar id för div till topspelen
+    const topDiv = document.querySelector("#topgames");
 
-//1. Hämta data om spel från Rawg
 
-//2. Lägg eventlyssnare på sökfunktion. Data som spel ska visas
+    games.forEach(game => {
+        //Skpar en div för spelkort
+        const gameCard = document.createElement("div");
+        gameCard.classList.add("topgamecard");
+        //Skapar elementen i spelkort med data från rawg
+        gameCard.innerHTML = `
+            <img src="${game.background_image}" alt="${game.name}">
+            <h3>${game.name}</h3>
+            <p>Released: ${game.released}</p>
+            <p>Rating: ${game.rating}</p>
+            <button class="showinfo">Show info</button>
+        `;
+        //Knapp med samma utforming och syfte som show info i sökresultat
+        const infoBtn = gameCard.querySelector(".showinfo");
+        //Eventlissnare på knapp som hämtar samma info i funktion getInfo
+        infoBtn.addEventListener("click", () => {
+            getInfo(game);
+        });
 
-//3. Skriv ut data i dom med info om spel och knapp till vidare info
+        //LÄgger till spelkort med info i topgames (topDiv)
+        topDiv.appendChild(gameCard);
 
-//4. Hämta data (summering av spel) från wikipedia
+    });
+}
 
-//5. Lägg eventlyssnare på knappen för att visa mer info. Den ska visa summeringen från wiki
-
-//.6 Filtera de 3 bäst rankade spelen
+//Anropa funktion för att visa toppspelen vid laddning av sida
+getTopGames();
 
 //7. Skriv ut topspelen i dom med spelinfo och knapp till summering (Toppspel ska ligga på startsida vid laddning)
 
