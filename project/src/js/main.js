@@ -17,12 +17,15 @@ async function getGames(search = "Far Cry") {
         // Filtrerar resultaten så att bara far cry spel kommer upp vid sökning
         //Exluderar special editions
         const filteredGames = rawgData.results.filter(game =>
-            game.name.toLowerCase().startsWith("far cry") &&
-            !game.name.toLowerCase().includes("edition" && "bundle") 
+            !game.name.toLowerCase().includes("edition") &&
+            !game.name.toLowerCase().includes("collection") &&
+            !game.name.toLowerCase().includes("bundle")
         );
+        //Sorterar spel så att högst rankade kommer fört
+        const sortedGames = filteredGames.sort((a, b) => b.rating - a.rating);
 
         //Skickar data till funkton som skapar spelkort
-        showGames(filteredGames);
+        showGames(sortedGames);
 
         //Vid fel av hämting av data
     } catch (error) {
@@ -114,6 +117,35 @@ async function getInfo(game) {
     }
 }
 
+
+//Funktion hämtar top 3 rankade spelen och visar på sidan vid laddning
+async function getTopGames(search = "Far Cry") {
+    try {
+        const url = `${rawgApi}?key=${rawgKey}&search=${encodeURIComponent(search)}&page_size=20`;
+        const response = await fetch(url);
+        const rawgData = await response.json();
+
+        // Filtrerar resultaten så att bara far cry spel kommer upp
+        //Exluderar special editions
+        const filteredGames = rawgData.results.filter(game =>
+            !game.name.toLowerCase().includes("edition") &&
+            !game.name.toLowerCase().includes("collection") &&
+            !game.name.toLowerCase().includes("bundle")
+        );
+        //Sorterar spel så att högst rankade kommer fört
+        const sortedGames = filteredGames.sort((a, b) => b.rating - a.rating);
+
+        // Plockar ut dom tre bäst rankade
+        const topGames = sortedGames.slice(0, 3);
+
+
+        //Vid fel av hämting av data
+    } catch (error) {
+        console.error("Fel vid hämtning av topspel", error);
+    }
+}
+
+//Funktion som visar topp 3 spelen
 
 //1. Hämta data om spel från Rawg
 
