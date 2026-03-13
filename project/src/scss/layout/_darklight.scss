@@ -1,0 +1,14 @@
+@use "../abstracts/variables";
+
+/*LIGHT*/
+
+@media (prefers-color-scheme: light){
+
+/*Bakgrund för spelkorten i light-mode*/
+
+.topgamecard, .gamecard, .infocard{
+    background-color: variables.$color-light-textbg;
+    color: variables.$color-light-text;
+}
+
+}

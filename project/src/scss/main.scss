@@ -20,6 +20,9 @@
 /*Sökfält*/
 @use "components/search";
 
+/*dark/light- mode*/
+@use "layout/darklight";
+
 /*Mobil layout*/
 @use "layout/mobile";
 

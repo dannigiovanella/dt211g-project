@@ -1,19 +1,60 @@
 @use "../abstracts/variables";
 
+/*Hovring över länkar (navingeringsfält)*/
+a{
+   transition: color 0.3s ease, text-decoration 0.2s ease; 
+}
+
+a:hover{
+  color: variables.$color-accent;
+}
+
 /*Animationer för spelkorten*/
 
-.topgamecard{
-
+.topgamecard {
+    transform: scale(1);
+    transition: transform 0.5s ease;
 }
 
-.topgamecard:hover{
-
+.topgamecard:hover {
+    transform: scale(1.1);
 }
 
-.gamecard{
 
+.gamecard {
+    transform: scale(1);
+    transition: transform 0.5s ease;
 }
 
-.gamecard:hover{
-    
+.gamecard:hover {
+    transform: scale(1.1);
+}
+
+
+/*Hovingsanimering för knappar*/
+@keyframes buttonbounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/*Sökknapp*/
+#searchbtn{
+    transition: transform 0.5s ease, box-shadow 0.2s ease;
+}
+
+#searchbtn:hover {
+  animation: buttonbounce 0.5s ease;
+  background-color: variables.$color-accent;
+}
+
+/*Tillbakaknapp*/
+.backbtn{
+    transition: transform 0.5s ease, box-shadow 0.2s ease;
+}
+
+.backbtn:hover{
+     animation: buttonbounce 0.5s ease;
+  background-color: variables.$color-accent; 
 }

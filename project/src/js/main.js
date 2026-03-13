@@ -1,10 +1,12 @@
 "use strict";
 
+
 //APIer (url och nyckel)
 //Rawg API
 const rawgApi = "https://api.rawg.io/api/games";
 const rawgKey = import.meta.env.VITE_RAWGAPIKEY;
-//Wiki API
+
+//Wiki API: `https://en.wikipedia.org/api/rest_v1/page/summary/${wikiTitle}`;
 
 
 //Hämta data om spel från Rawg vid sökning av Far Cry
@@ -34,7 +36,6 @@ async function getGames(search) {
 }
 
 
-
 //Hämtar ID för knapp och sökfält
 const searchBtn = document.querySelector("#searchbtn");
 const searchInput = document.querySelector("#searchinput");
@@ -42,6 +43,7 @@ const searchInput = document.querySelector("#searchinput");
 const messageDiv = document.querySelector("#searchmessage");
 //Sökfunktion - Eventlyssnare för sökfältet
 searchBtn.addEventListener("click", () => {
+    
     const searchValue = searchInput.value.trim().toLowerCase();
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     //Värdet i input måste innehålla antingen far eller cry annar visas felmeddelande
@@ -225,7 +227,7 @@ function showTopGames(games) {
         `;
         // Eventlyssnare som gör hela kortet klickbart hela kortet klickbart
         gameCard.addEventListener("click", () => {
-
+ 
             // göm toppspel när man klickar in på spelet
             document.querySelector("#topgames").style.display = "none";
 
@@ -246,7 +248,6 @@ function showTopGames(games) {
 
 //Anropa funktion för att visa toppspelen vid laddning av sida
 getTopGames();
-
 
 //8. Dokumetera funktionerna
 
