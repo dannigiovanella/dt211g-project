@@ -3,66 +3,70 @@
 */
 @use "../abstracts/variables";
 
-*{
+* {
     box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-html{
+html {
     background-color: variables.$color-mainbg;
 }
 
-body{
+body {
     max-width: 1700px;
     margin: 0 auto;
 }
 
-main{
+main {
     width: 100%;
     min-height: 100vh;
 }
 
 .pagewrapper {
-width: 90%;
-max-width: 1200px;
-margin: 0 auto;
-padding-top: 3rem;
-
-h1{
-    text-align: center;
-}
-
-/*Rubriker till topspel och sökresultat*/
-#toptitle,
-#searchtitle {
-    display: none;
-}
-
-.searchwrap {
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
-}
+    padding-top: 3rem;
+
+
+    /*Rubriker till topspel och sökresultat (visas efter villkor i js)*/
+    #toptitle,
+    #searchtitle {
+        display: none;
+    }
+
+    .searchwrap {
+        margin: 0 auto;
+    }
 }
 
 
-footer{
+footer {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    padding-left: 2rem;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-  
-    div{
-        width: 40ch;
+    padding: 2rem;
+    padding-top: 3rem;
+
+    div {
+        max-width: 40ch;
         font-style: italic;
         font-size: 0.9rem;
+        padding-right: 2rem;
+        padding-left: 1rem;
+    }
+
+    .footer1{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
 }
-

@@ -3,6 +3,7 @@
 
 /*Knappar*/
 
+/*Färgstil på knappar*/
 @mixin buttonstyle($bgcolor, $textcolor, $shadowcolor) {
     background-color: $bgcolor;
     color: $textcolor;

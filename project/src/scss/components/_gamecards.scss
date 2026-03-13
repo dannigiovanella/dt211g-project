@@ -1,13 +1,5 @@
 @use "../abstracts/variables";
 
-#searchresults {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 20px;
-
-}
 
 #topgames {
     display: flex;
@@ -35,18 +27,36 @@
 
 }
 
+
+#searchresults {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
 /*Game card. i sökresultat*/
 .gamecard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 20%;
     background-color: variables.$color-dark-textbg;
-    padding: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
     margin-bottom: 1rem;
     cursor: pointer;
+    /*flex- grow, shrink och basis anger standarsvärde och låter kortet krympa och växa*/
+    flex: 1 1 200px;
+    max-width: 250px;
 
     img {
         width: 100%;
-        height: auto;
+        height: 25rem;
         max-height: 130px;
+        border-radius: 3px;
     }
 }
 

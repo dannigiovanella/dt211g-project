@@ -1,4 +1,7 @@
 
+/*Animationer*/
+@use "abstracts/animations";
+
 /*Variabler*/
 @use "abstracts/variables";
 
@@ -16,6 +19,9 @@
 
 /*Sökfält*/
 @use "components/search";
+
+/*Mobil layout*/
+@use "layout/mobile";
 
 /*Navigation (header)*/
 @use "layout/navigation";

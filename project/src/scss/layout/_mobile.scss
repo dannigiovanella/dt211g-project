@@ -1,0 +1,64 @@
+@media (max-width: 600px) {
+
+    /*Sidolayout*/
+    .pagewrapper {
+        width: 100%;
+    }
+
+    /*Header*/
+    header {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        margin: 0;
+
+        .about {
+            font-size: 1.5rem;
+            margin-top: 0rem;
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+        }
+
+    }
+
+    /*Sökruta*/
+    .searchwrap {
+    display: flex;
+    width: 100%;
+    padding-top: 0rem;
+    padding-bottom: 4rem;
+}
+
+#searchmessage{
+    margin-bottom: 1rem;
+}
+
+
+    /*Top 3 spel*/
+    #topgames {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    /*Sökresultaten*/
+    #serchresult {
+        flex-direction: column;
+    }
+
+    /*Footer*/
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+}
