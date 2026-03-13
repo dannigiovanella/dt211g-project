@@ -20,14 +20,7 @@
     @include buttonstyle(variables.$color-button, variables.$color-dark-text, black);
 }
 
-/*Info-knapp*/
-.showinfo {
-    width: 100%;
-    height: 2.5rem;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    @include buttonstyle(variables.$color-button, variables.$color-dark-text, black);
-}
+
 
 /*Tillbakaknapp*/
 .backbtn{

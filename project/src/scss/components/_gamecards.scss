@@ -21,9 +21,10 @@
     width: 100%;
     max-width: 300px;
     background-color: variables.$color-dark-textbg;
-    padding: 1rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
     border-radius: 10px;
+    cursor: pointer;
 
     img {
         width: 100%;
@@ -40,6 +41,7 @@
     background-color: variables.$color-dark-textbg;
     padding: 1rem;
     margin-bottom: 1rem;
+    cursor: pointer;
 
     img {
         width: 100%;
@@ -52,12 +54,18 @@
 
 #gamesummary {
     width: 90%;
+    margin-bottom: 1rem;
 }
 
 .infocard {
-    width: 50%;
+    max-width: 60ch;
+    background-color: variables.$color-dark-textbg;
+    padding: 1rem;
+    border-radius: 10px;
 
     img {
         width: 100%;
+        height: auto;
+        border-radius: 3px;
     }
 }

@@ -92,33 +92,24 @@ function showGames(games) {
       <img src="${game.background_image}" alt="${game.name}">
       <h3>${game.name}</h3>
       <p>Released: ${game.released}</p>
-      <button class="showinfo">Show info</button>
     `;
-        //Lägger till div för spelkort i "searchresults"
+        // Eventlyssnare som gör så att hela kortet blir klickbart
+        gameCard.addEventListener("click", () => {
+
+            // Döljer topspel och sökresultat
+            document.querySelector("#topgames").style.display = "none";
+            document.querySelector("#searchresults").style.display = "none";
+
+            //Anropar funktion för att hämta mer info om spel
+            getInfo(game, "search");
+
+        });
+
+        // Lägger till kortet i gamediv
         gameDiv.appendChild(gameCard);
 
-        //Evenlyssnare för knapp till mer info. (Summering av spel från wiki)
-        const infoBtn = gameCard.querySelectorAll(".showinfo");
-
-        infoBtn.forEach(infoButton => {
-            infoButton.addEventListener("click", () => {
-                //Döljer topspel och sökresultat
-                document.querySelector("#topgames").style.display = "none";
-                document.querySelector("#searchresults").style.display = "none";
-
-
-                //Hämtar data utifrån titel
-                const gameTitle = infoButton.dataset.title;
-
-                // göm sökresultat när man går inte på ett spel
-                document.querySelector("#searchresults").style.display = "none";
-
-                // Anropa funktion som hämtar info från wiki
-                getInfo(game, "search");
-
-            });
-        });
     });
+
 }
 
 //Funktion hämtar data från wikipedia. Summering av spel.
@@ -176,8 +167,6 @@ async function getInfo(game, from = "search") {
         infocard.appendChild(infoContent);
         infoDiv.appendChild(infocard);
 
-
-
     } catch (error) {
         console.error("Fel vid hämtning av info", error);
     }
@@ -233,12 +222,9 @@ function showTopGames(games) {
             <img src="${game.background_image}" alt="${game.name}">
             <h3>${game.name}</h3>
             <p>Rating: ${game.rating}</p>
-            <button class="showinfo">Show info</button>
         `;
-        //Knapp med samma utforming och syfte som show info i sökresultat
-        const infoBtn = gameCard.querySelector(".showinfo");
-        //Eventlissnare på knapp som hämtar samma info i funktion getInfo
-        infoBtn.addEventListener("click", () => {
+        // Eventlyssnare som gör hela kortet klickbart hela kortet klickbart
+        gameCard.addEventListener("click", () => {
 
             // göm toppspel när man klickar in på spelet
             document.querySelector("#topgames").style.display = "none";
@@ -248,6 +234,7 @@ function showTopGames(games) {
             //Döljer rubrik för sökreultat
             document.querySelector("#searchtitle").style.display = "none";
 
+            //Anropar funktion för att hämta mer info om spel
             getInfo(game, "top");
         });
 
