@@ -43,7 +43,13 @@ const searchInput = document.querySelector("#searchinput");
 const messageDiv = document.querySelector("#searchmessage");
 //Sökfunktion - Eventlyssnare för sökfältet
 searchBtn.addEventListener("click", () => {
-    
+
+    //Animation för knapp
+    //Knapp får class som tas bort tillfälligt för att kunna uppdateras och kunna köras igen vid nästa klick
+    searchBtn.classList.remove("click");
+    void searchBtn.offsetWidth;
+    searchBtn.classList.add("click");
+
     const searchValue = searchInput.value.trim().toLowerCase();
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     //Värdet i input måste innehålla antingen far eller cry annar visas felmeddelande
@@ -142,6 +148,7 @@ async function getInfo(game, from = "search") {
 
         //eventlyssnare som gör att sökresultat visas vid klick av back
         backBtn.addEventListener("click", () => {
+            
             infoDiv.innerHTML = "";
             if (from === "search") {
                 // Visa sökresultaten
@@ -227,7 +234,7 @@ function showTopGames(games) {
         `;
         // Eventlyssnare som gör hela kortet klickbart hela kortet klickbart
         gameCard.addEventListener("click", () => {
- 
+
             // göm toppspel när man klickar in på spelet
             document.querySelector("#topgames").style.display = "none";
 

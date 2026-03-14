@@ -34,8 +34,8 @@ a:hover{
 /*Hovingsanimering för knappar*/
 @keyframes buttonbounce {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.1); }
-  70%  { transform: scale(0.95); }
+  50%  { transform: scale(1.1); background-color: variables.$color-accent; }
+  70%  { transform: scale(0.95); background-color: variables.$color-accent;}
   100% { transform: scale(1); }
 }
 
@@ -44,9 +44,8 @@ a:hover{
     transition: transform 0.5s ease, box-shadow 0.2s ease;
 }
 
-#searchbtn:hover {
+#searchbtn.click {
   animation: buttonbounce 0.5s ease;
-  background-color: variables.$color-accent;
 }
 
 /*Tillbakaknapp*/
@@ -56,5 +55,5 @@ a:hover{
 
 .backbtn:hover{
      animation: buttonbounce 0.5s ease;
-  background-color: variables.$color-accent; 
+     background-color: variables.$color-accent;
 }
