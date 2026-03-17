@@ -53,10 +53,16 @@ searchBtn.addEventListener("click", () => {
     const searchValue = searchInput.value.trim().toLowerCase();
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     //Värdet i input måste innehålla antingen far eller cry annar visas felmeddelande
+
     if (!searchValue.toLowerCase().includes("far") && !searchValue.toLowerCase().includes("cry")) {
         messageDiv.textContent = "Needs at least 'far' or 'cry'";
         return;
     }
+    //Gör så att rubrik för sökresultat visar vad man sökt på i rubrik
+    document.querySelector("#searchtitle").textContent = `Search result: ${searchValue}`;
+
+    //Tömmer sökfältet efter sökning
+    searchInput.value = "";
 
     // Om input är rätt, töm meddelandet
     messageDiv.textContent = "";
@@ -148,7 +154,7 @@ async function getInfo(game, from = "search") {
 
         //eventlyssnare som gör att sökresultat visas vid klick av back
         backBtn.addEventListener("click", () => {
-            
+
             infoDiv.innerHTML = "";
             if (from === "search") {
                 // Visa sökresultaten

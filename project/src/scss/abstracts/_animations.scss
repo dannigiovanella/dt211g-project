@@ -9,6 +9,24 @@ a:hover{
   color: variables.$color-accent;
 }
 
+/*Aniamtion över huvudrubrik. ser ut som text skrivs ut när sida laddas*/
+h1{
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(20, end) forwards,          
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+
 /*Animationer för spelkorten*/
 
 .topgamecard {

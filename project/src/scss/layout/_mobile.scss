@@ -28,17 +28,40 @@
 
     }
 
-    /*Sökruta*/
+    /*Sökruta. input + knapp*/
     .searchwrap {
-    display: flex;
-    width: 100%;
-    padding-top: 0rem;
-    padding-bottom: 4rem;
-}
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 0rem;
+        padding-bottom: 4rem;
+    }
 
-#searchmessage{
-    margin-bottom: 1rem;
-}
+    /*Sök - Inputfält*/
+    #searchinput {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 0.7rem;
+    }
+
+    /*Sök- knapp*/
+    #searchbtn {
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        margin-top: 0.5rem;
+    }
+
+    /*Felmeddelande vid sök*/
+    #searchmessage {
+        margin-bottom: 1rem;
+    }
+
+    /*Tillbaka-knapp i inforamtionsruta*/
+    .backbtn {
+        width: 20%;
+        height: 2.5rem;
+    }
 
 
     /*Top 3 spel*/
