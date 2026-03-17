@@ -1,4 +1,32 @@
-"use strict";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
 
 
 //APIer (url och nyckel)
@@ -16,20 +44,20 @@ const rawgKey = import.meta.env.VITE_RAWGAPIKEY;
  * Funktionen är asynkron och returnerar en Promise utan värde, men skickar datan till funktionen showGames
  * 
  * @param {string} search - Söksträngen som användaren anger i input
- * @returns {Promise<void>} 
+ * @returns {Promise&lt;void>} 
  */
 async function getGames(search) {
     try {
-        const url = `${rawgApi}?key=${rawgKey}&search=${encodeURIComponent(search)}&page_size=20`;
+        const url = `${rawgApi}?key=${rawgKey}&amp;search=${encodeURIComponent(search)}&amp;page_size=20`;
         const response = await fetch(url);
         const rawgData = await response.json();
 
         // Filtrerar resultaten så att bara relevanta far cry spel kommer upp vid sökning
         const filteredGames = rawgData.results.filter(game => {
             const name = game.name.toLowerCase();
-            return name.startsWith("far cry") &&
-                !name.includes("edition") &&
-                !name.includes("collection") &&
+            return name.startsWith("far cry") &amp;&amp;
+                !name.includes("edition") &amp;&amp;
+                !name.includes("collection") &amp;&amp;
                 !name.includes("bundle");
         });
 
@@ -61,7 +89,7 @@ searchBtn.addEventListener("click", () => {
     //Kör funktionen för att hämta data med vädret från input vid klick av knapp
     //Värdet i input måste innehålla antingen far eller cry annar visas felmeddelande
 
-    if (!searchValue.toLowerCase().includes("far") && !searchValue.toLowerCase().includes("cry")) {
+    if (!searchValue.toLowerCase().includes("far") &amp;&amp; !searchValue.toLowerCase().includes("cry")) {
         messageDiv.textContent = "Needs at least 'far' or 'cry'";
         return;
     }
@@ -117,9 +145,9 @@ function showGames(games) {
         gameCard.classList.add("gamecard");
 
         gameCard.innerHTML = `
-      <img src="${game.background_image}" alt="${game.name}">
-      <h3>${game.name}</h3>
-      <p>Released: ${game.released}</p>
+      &lt;img src="${game.background_image}" alt="${game.name}">
+      &lt;h3>${game.name}&lt;/h3>
+      &lt;p>Released: ${game.released}&lt;/p>
     `;
         // Eventlyssnare som gör så att hela kortet blir klickbart
         gameCard.addEventListener("click", () => {
@@ -150,7 +178,7 @@ function showGames(games) {
  * 
  * @param {Object} game - Objekt med information om spel från Rawg API
  * @param {string} [from="search"] - Berättar var användaren kom ifrån (search eller top, för att kunna gå tillbaka på rätt sätt med tillbakaknapp)
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function getInfo(game, from = "search") {
     try {
@@ -175,7 +203,7 @@ async function getInfo(game, from = "search") {
         //Skapar en tillbakaknapp i show info med class för css
         const backBtn = document.createElement("button");
         backBtn.classList.add("backbtn");
-        backBtn.innerHTML = `<img src="./images/backicon.png" alt="Back">`;
+        backBtn.innerHTML = `&lt;img src="./images/backicon.png" alt="Back">`;
 
         //eventlyssnare som gör att sökresultat visas vid klick av back
         backBtn.addEventListener("click", () => {
@@ -195,13 +223,13 @@ async function getInfo(game, from = "search") {
         //Skapar div med samlad information om spel. "No info" om information saknas
         const infoContent = document.createElement("div");
         infoContent.innerHTML = `
-        <div class="infocard">
-        <img src="${game.background_image}" alt="${game.name}">
-        <h3>${game.name}</h3>
-        <p><strong>Released:</strong> ${game.released}</p>
-        <p><strong>Rating:</strong> ${game.rating}</p>
-        <p>${wikiData.extract || "No info found"}</p>
-        </div>
+        &lt;div class="infocard">
+        &lt;img src="${game.background_image}" alt="${game.name}">
+        &lt;h3>${game.name}&lt;/h3>
+        &lt;p>&lt;strong>Released:&lt;/strong> ${game.released}&lt;/p>
+        &lt;p>&lt;strong>Rating:&lt;/strong> ${game.rating}&lt;/p>
+        &lt;p>${wikiData.extract || "No info found"}&lt;/p>
+        &lt;/div>
     `;
         //Infocontetn läggs i div för infokortet. infokortet läggs i div för hela info
         infocard.appendChild(infoContent);
@@ -221,21 +249,21 @@ async function getInfo(game, from = "search") {
  * Funktionen är asynkron och returnerar en Promise utan värde.
  *
  * @param {string} [search="Far Cry"] - Sökterm för att hämta specifik Far cry- spel
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function getTopGames(search = "Far Cry") {
     try {
-        const url = `${rawgApi}?key=${rawgKey}&search=${encodeURIComponent(search)}&page_size=20`;
+        const url = `${rawgApi}?key=${rawgKey}&amp;search=${encodeURIComponent(search)}&amp;page_size=20`;
         const response = await fetch(url);
         const rawgData = await response.json();
 
         // Filtrerar resultaten så att bara relevanta far cry spel kommer upp
         const filteredGames = rawgData.results.filter(game =>
-            game.name.toLowerCase().includes("far cry") &&
+            game.name.toLowerCase().includes("far cry") &amp;&amp;
             //exkluderar:
-            !game.name.toLowerCase().includes("edition") &&
-            !game.name.toLowerCase().includes("collection") &&
-            !game.name.toLowerCase().includes("bundle") &&
+            !game.name.toLowerCase().includes("edition") &amp;&amp;
+            !game.name.toLowerCase().includes("collection") &amp;&amp;
+            !game.name.toLowerCase().includes("bundle") &amp;&amp;
             !game.name.toLowerCase().includes("dragon")
         );
         //Sorterar spel så att högst rankade kommer fört
@@ -274,9 +302,9 @@ function showTopGames(games) {
         gameCard.classList.add("topgamecard");
         //Skapar elementen i spelkort med data från rawg
         gameCard.innerHTML = `
-            <img src="${game.background_image}" alt="${game.name}">
-            <h3>${game.name}</h3>
-            <p>Rating: ${game.rating}</p>
+            &lt;img src="${game.background_image}" alt="${game.name}">
+            &lt;h3>${game.name}&lt;/h3>
+            &lt;p>Rating: ${game.rating}&lt;/p>
         `;
         // Eventlyssnare som gör hela kortet klickbart hela kortet klickbart
         gameCard.addEventListener("click", () => {
@@ -304,4 +332,26 @@ getTopGames();
 
 //8. Dokumetera funktionerna
 
-// Om tid finns. hitta api att addera mer info/lore till spelen
+// Om tid finns. hitta api att addera mer info/lore till spelen</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getGames">getGames</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getTopGames">getTopGames</a></li><li><a href="global.html#showGames">showGames</a></li><li><a href="global.html#showTopGames">showTopGames</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Mar 17 2026 18:09:52 GMT+0100 (centraleuropeisk normaltid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

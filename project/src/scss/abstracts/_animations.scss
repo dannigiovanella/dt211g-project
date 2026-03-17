@@ -14,7 +14,7 @@ h1{
   white-space: nowrap;
   overflow: hidden;
   width: 0;
-  animation: typing 3s steps(20, end) forwards,          
+  animation: typing 2s steps(20, end) forwards,          
 }
 
 @keyframes typing {
@@ -50,7 +50,7 @@ h1{
 
 
 /*Hovingsanimering för knappar*/
-@keyframes buttonbounce {
+@keyframes buttonchange {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.1); background-color: variables.$color-accent; }
   70%  { transform: scale(0.95); background-color: variables.$color-accent;}
@@ -63,7 +63,7 @@ h1{
 }
 
 #searchbtn.click {
-  animation: buttonbounce 0.5s ease;
+  animation: buttonchange 0.5s ease;
 }
 
 /*Tillbakaknapp*/
@@ -72,6 +72,6 @@ h1{
 }
 
 .backbtn:hover{
-     animation: buttonbounce 0.5s ease;
+     animation: buttonchange 0.5s ease;
      background-color: variables.$color-accent;
 }

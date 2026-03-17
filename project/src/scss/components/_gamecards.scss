@@ -1,6 +1,6 @@
 @use "../abstracts/variables";
 
-
+/*Wrapper för alla topspelen*/
 #topgames {
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@
 
 }
 
-
+/*Wrapper för alla sökresultaat*/
 #searchresults {
     display: flex;
     flex-wrap: wrap;

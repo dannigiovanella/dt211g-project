@@ -1,3 +1,5 @@
+/*HEADER OCH NAVIGATION*/
+
 header {
     display: flex;
     justify-content: space-between;
@@ -5,18 +7,11 @@ header {
     margin-right: 4rem;
 }
 
-h1{
+h1 {
     font-size: 3rem;
 }
 
-.about {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 2rem;
-    margin-top: 2.5rem;
-}
 
-.sitelogo{
+.sitelogo {
     margin-bottom: 1rem;
 }

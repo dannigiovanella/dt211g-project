@@ -1,7 +1,6 @@
-/*
-  outline: 1px solid red; 
-*/
 @use "../abstracts/variables";
+
+/*HUVUDLAYOUT FÖR SIDAN I DESKTOP-LÄGE*/
 
 * {
     box-sizing: border-box;
@@ -28,6 +27,7 @@ main {
     min-height: 100vh;
 }
 
+/*Wrapper för innehållet inom main*/
 .pagewrapper {
     width: 90%;
     max-width: 1200px;
@@ -41,12 +41,13 @@ main {
         display: none;
     }
 
+    /*Sökfunktionen*/
     .searchwrap {
         margin: 0 auto;
     }
 }
 
-
+/*Footer med info om ägare av data*/
 footer {
     display: flex;
     flex-wrap: wrap;
@@ -63,10 +64,16 @@ footer {
         padding-left: 1rem;
     }
 
-    .footer1{
+    .footer1 {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    .footer2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
 }
