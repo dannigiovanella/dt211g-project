@@ -1,5 +1,17 @@
 @use "../abstracts/variables";
 
+/*Villkor för om kort ska ha border eller ej*/
+$highlightborder: false;
+
+/*Baskort som alla spelkort kan ärva styling från*/
+
+%card {
+    background-color: variables.$color-dark-textbg;
+    border-radius: 10px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
 /*Wrapper för alla topspelen*/
 #topgames {
     display: flex;
@@ -8,15 +20,20 @@
     width: 100%;
 }
 
+
 /*Game card för topspelen*/
 .topgamecard {
+    @extend %card;
     width: 100%;
     max-width: 300px;
-    background-color: variables.$color-dark-textbg;
-    padding: 0.5rem;
-    margin-bottom: 2rem;
-    border-radius: 10px;
-    cursor: pointer;
+
+    @if $highlightborder {
+        border: 2px solid variables.$color-accent;
+    }
+
+    @else {
+        border: 2px solid transparent;
+    }
 
     img {
         width: 100%;
@@ -39,18 +56,22 @@
 
 /*Game card. i sökresultat*/
 .gamecard {
+    @extend %card;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 20%;
-    background-color: variables.$color-dark-textbg;
-    padding: 0.5rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    cursor: pointer;
     /*flex- grow, shrink och basis anger standarsvärde och låter kortet krympa och växa*/
     flex: 1 1 200px;
     max-width: 250px;
+
+    @if $highlightborder {
+        border: 2px solid variables.$color-accent;
+    }
+
+    @else {
+        border: 2px solid transparent;
+    }
 
     img {
         width: 100%;
@@ -68,10 +89,9 @@
 }
 
 .infocard {
+    @extend %card;
     max-width: 60ch;
-    background-color: variables.$color-dark-textbg;
     padding: 1rem;
-    border-radius: 10px;
 
     img {
         width: 100%;
