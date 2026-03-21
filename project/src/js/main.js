@@ -117,7 +117,7 @@ function showGames(games) {
         gameCard.classList.add("gamecard");
 
         gameCard.innerHTML = `
-      <img src="${game.background_image}" alt="${game.name}">
+      <img src="${game.background_image}" alt="${game.name} loading="lazy">
       <h3>${game.name}</h3>
       <p>Released: ${game.released}</p>
     `;
@@ -196,7 +196,7 @@ async function getInfo(game, from = "search") {
         const infoContent = document.createElement("div");
         infoContent.innerHTML = `
         <div class="infocard">
-        <img src="${game.background_image}" alt="${game.name}">
+        <img src="${game.background_image}" alt="${game.name} loading="lazy">
         <h3>${game.name}</h3>
         <p><strong>Released:</strong> ${game.released}</p>
         <p><strong>Rating:</strong> ${game.rating}</p>
