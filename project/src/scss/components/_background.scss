@@ -6,3 +6,23 @@ main {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+@media (max-width: 1024px) {
+  main{
+ background-image: url('/images/bg-tablet.webp');
+   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }  
+}
+
+@media (max-width: 600px) {
+  main{
+background-image: url('/images/bg-mobile.webp'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
+}

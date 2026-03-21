@@ -9,7 +9,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        about: resolve(__dirname, "about.html"),
       }
     }
   },
@@ -22,10 +21,6 @@ export default defineConfig({
 
       png: {
         quality: 70
-      },
-
-      jpg: {
-        quality: 75
       },
 
       svg: {

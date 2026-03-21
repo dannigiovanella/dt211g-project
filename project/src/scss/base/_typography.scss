@@ -1,13 +1,13 @@
 @use "../abstracts/variables";
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: variables.$color-dark-text;
 }
 
 h1 {
-  font-family: "Barlow Condensed", sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 850;
   font-style: italic;
   font-size: 3rem;
@@ -16,7 +16,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Barlow Condensed", sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-style: italic;
   font-size: 2rem;
@@ -24,13 +24,13 @@ h2 {
   text-align: center;
 }
 
-h3{
-   font-family: "Barlow Condensed", sans-serif;
+h3 {
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
 }
 
-.tagline{
+.tagline {
   font-size: 1.2rem;
   font-style: italic;
   margin-top: 0;
@@ -40,4 +40,3 @@ a {
   color: variables.$color-dark-text;
   text-decoration: none;
 }
-

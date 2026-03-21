@@ -1,4 +1,7 @@
+@use "../abstracts/variables";
+
 /*LAYOUT FÖR MINDRE SKÄRMAR (MOBILE)*/
+
 
 @media (max-width: 600px) {
 
@@ -84,6 +87,23 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+    }
+
+    /*Villkor för om kort ska ha border eller ej*/
+    $highlightborder: true;
+
+    /*Game card för topspelen*/
+    .topgamecard,
+    .gamecard {
+
+        @if $highlightborder {
+            border: 2px solid variables.$color-accent;
+        }
+
+        @else {
+            border: 2px solid transparent;
+        }
+
     }
 
 }

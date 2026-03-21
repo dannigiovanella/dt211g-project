@@ -25,6 +25,7 @@ body {
 main {
     width: 100%;
     min-height: 100vh;
+    padding-bottom: 1rem;
 }
 
 /*Wrapper för innehållet inom main*/
@@ -33,6 +34,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 3rem;
+    margin-bottom: 2rem;
 
 
     /*Rubriker till topspel och sökresultat (visas efter villkor i js)*/
@@ -54,7 +56,8 @@ footer {
     justify-content: space-between;
     width: 100%;
     padding: 2rem;
-    padding-top: 3rem;
+    padding-top: 1rem;
+    margin-top: 2rem;
 
     div {
         max-width: 40ch;
