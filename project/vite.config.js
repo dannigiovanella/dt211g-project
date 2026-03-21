@@ -23,10 +23,6 @@ export default defineConfig({
         quality: 70
       },
 
-      svg: {
-        quality: 75
-      }
-
     })
   ]
 
